@@ -1,0 +1,25 @@
+serverAddr = "your_server_ip"  # Server IP address
+serverPort = 7050              # Server port, used to establish connection
+
+auth.method = "token"          # Authentication method
+auth.token = "your_token_here" # Token, must match the server
+
+transport.tls.enable = false 
+
+[[proxies]]                    # Proxy config 1: file server (static_file plugin)
+name = "mac_desktop" 
+type = "tcp"         
+remotePort = 6001               # Remote working port
+
+[proxies.plugin]
+type = "static_file" 
+localPath = "/path/to/your/local/folder"  # Local file path to serve
+stripPrefix = "mac_desktop"               # URL prefix to strip
+httpUser = "your_username"                # HTTP basic auth username
+httpPassword = "your_password"            # HTTP basic auth password
+
+[[proxies]]                               # Proxy config 2: web service
+name = "web" 
+type = "http" 
+localPort = 8080                          # Local service port
+remotePort = 6002                         # Remote working port

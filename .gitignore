@@ -1,0 +1,4 @@
+*.log
+frpc.toml.backup
+.DS_Store
+frpc
